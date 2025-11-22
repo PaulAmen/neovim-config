@@ -1,0 +1,13 @@
+# Archivos temporales y de swap
+*.swp
+*.swo
+*~
+.netrwhist
+
+# Cache y compilados (por seguridad, aunque Lazy suele guardar esto en ~/.local)
+plugin/packer_compiled.lua
+undo/
+
+# Archivos de sistema
+.DS_Store
+
