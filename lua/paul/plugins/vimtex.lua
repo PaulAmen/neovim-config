@@ -2,14 +2,30 @@ return {
   "lervag/vimtex",
   lazy = false,
   init = function()
-    -- Configura Chromium como visor de PDF
+    -- Visor de PDF
     vim.g.vimtex_view_method = "general"
     vim.g.vimtex_view_general_viewer = "chromium"
     
-    -- Usa latexmk para compilar automáticamente
+    -- Motor de compilación
     vim.g.vimtex_compiler_method = "latexmk"
     
-    -- Oculta la ventana emergente de advertencias menores
+    -- Ocultar advertencias menores
     vim.g.vimtex_quickfix_mode = 0
+
+    -- Tabla completa para asegurar el ciclo continuo y forzar la compilación
+    vim.g.vimtex_compiler_latexmk = {
+      build_dir = "",
+      callback = 1,
+      continuous = 1,
+      executable = "latexmk",
+      hooks = {},
+      options = {
+        "-verbose",
+        "-file-line-error",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-f", -- CRÍTICO: Fuerza a latexmk a continuar aunque el primer paso falle
+      },
+    }
   end,
 }
